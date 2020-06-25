@@ -51,14 +51,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if editingStyle == .delete{
             
             
-            DispatchQueue.global(qos: .userInitiated).async{[weak self] in
-                ViewController.managedObjectContext.delete((self?.groceries[indexPath.row])!)
+           // DispatchQueue.global(qos: .userInitiated).async{[weak self] in
+                ViewController.managedObjectContext.delete(groceries[indexPath.row])
                 
                 DispatchQueue.main.async {[weak self] in
                     self?.groceries.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .left)
                 }
-            }
+           // }
             do{
                 try ViewController.managedObjectContext.save()
             }
