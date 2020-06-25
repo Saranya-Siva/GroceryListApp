@@ -20,22 +20,22 @@ class AddGroceryView: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var dateFieldSelected: UIDatePicker!
     
     var currentPageType : pageType = .addGrocery
-    var currentManagedObject : NSManagedObject?
     var currentGroceryItem : Grocery?
+    var groceryManager = GroceryManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(tapRecognizer)
+//        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+//        imageView.isUserInteractionEnabled = true
+//        imageView.addGestureRecognizer(tapRecognizer)
         itemNameField.delegate = self
         setUpUIElements()
     }
     
     
     // MARK: - Helper methods
-    @objc func imageViewTapped(){
+   @IBAction func imageButtonTapped(_ sender: Any){
         print("imageTapped")
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
@@ -60,37 +60,38 @@ class AddGroceryView: UIViewController, UIImagePickerControllerDelegate, UINavig
     func createGroceryItem(){
         if currentGroceryItem == nil {
             
-            let groceryItem = Grocery(context: ViewController.managedObjectContext)
-        
-            if let groceryImage = imageView.image {
-                groceryItem.groceryImage = groceryImage.pngData()
+            groceryManager.createNewGrocery(name : itemNameField.text!, date : dateFieldSelected.date, image: imageView.image){(err) in
+                if let err = err {
+                    showAlert(message: err.localizedDescription)
+                }
+                else{
+                    if let originalView = self.navigationController?.viewControllers[0] as? ViewController{
+                        groceryManager.fetchGroceryData(){(err) in
+                            if let err = err {
+                                print("message: \(err.localizedDescription)")
+                            }
+                        }
+                        originalView.groceriesTableView.reloadData()
+                    }
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
-            groceryItem.name = itemNameField.text
-            
-            groceryItem.addedDate = dateFieldSelected.date
-            
         }
         else{
-             if let groceryImage = imageView.image {
-                currentGroceryItem?.setValue(groceryImage.pngData(), forKey: "groceryImage")
+            
+            groceryManager.updateGroceryData(for : currentGroceryItem!, name : itemNameField.text!, date : dateFieldSelected.date, image:  imageView.image){(err) in
+                if let err = err {
+                    showAlert(message: err.localizedDescription)
+                }
+                else{
+                    if let originalView = self.navigationController?.viewControllers[0] as? ViewController{
+                        originalView.groceriesTableView.reloadData()
+                    }
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
-            currentGroceryItem?.setValue(itemNameField.text, forKey: "name")
-            currentGroceryItem?.setValue(dateFieldSelected.date, forKey: "addedDate")
-        }
         
-        do{
-            try ViewController.managedObjectContext.save()
-            if let originalView = self.navigationController?.viewControllers[0] as? ViewController{
-                originalView.getTableData()
-            }
-            self.navigationController?.popViewController(animated: true)
-            //getTableData()
         }
-        catch{
-            showAlert(message: "Couldn save the data\(error.localizedDescription) ")
-        }
-            
-            
             
     }
     

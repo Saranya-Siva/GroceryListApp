@@ -15,14 +15,16 @@ class GroceryItemCell: UITableViewCell {
     @IBOutlet weak var groceryImageInList: UIImageView!
     
     func setData(_ groceryData : Grocery){
+        
         groceryNameLabel.text = groceryData.name ?? ""
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let addedDate = dateFormatter.string(from: groceryData.addedDate!)
         addedDateLabel.text =  addedDate
+        
         if let image = groceryData.groceryImage{
             groceryImageInList.image = UIImage(data: image)
-            
         }
         
     }

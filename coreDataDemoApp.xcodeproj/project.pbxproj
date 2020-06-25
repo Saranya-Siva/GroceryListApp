@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE9A909524A5523500F0C2C8 /* GroceryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A909424A5523500F0C2C8 /* GroceryManager.swift */; };
 		EEBAB7F624832552004E58DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBAB7F524832552004E58DC /* AppDelegate.swift */; };
 		EEBAB7F824832552004E58DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBAB7F724832552004E58DC /* SceneDelegate.swift */; };
 		EEBAB7FA24832552004E58DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBAB7F924832552004E58DC /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE9A909424A5523500F0C2C8 /* GroceryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryManager.swift; sourceTree = "<group>"; };
 		EEBAB7F224832552004E58DC /* coreDataDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coreDataDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEBAB7F524832552004E58DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEBAB7F724832552004E58DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +45,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE9A909124A5515400F0C2C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EEBAB7FB24832552004E58DC /* Main.storyboard */,
+				EEBAB8032483255D004E58DC /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE9A909224A5519000F0C2C8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EEBAB7F924832552004E58DC /* ViewController.swift */,
+				EEBAB810248386E4004E58DC /* AddGroceryView.swift */,
+				EEBAB80C24832BFD004E58DC /* GroceryItemCell.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EE9A909324A551B800F0C2C8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EEBAB7FE24832552004E58DC /* coreDataDemoApp.xcdatamodeld */,
+				EE9A909424A5523500F0C2C8 /* GroceryManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		EEBAB7E924832551004E58DC = {
 			isa = PBXGroup;
 			children = (
@@ -64,14 +94,11 @@
 			children = (
 				EEBAB7F524832552004E58DC /* AppDelegate.swift */,
 				EEBAB7F724832552004E58DC /* SceneDelegate.swift */,
-				EEBAB7F924832552004E58DC /* ViewController.swift */,
-				EEBAB7FB24832552004E58DC /* Main.storyboard */,
+				EE9A909324A551B800F0C2C8 /* Model */,
+				EE9A909124A5515400F0C2C8 /* View */,
+				EE9A909224A5519000F0C2C8 /* Controller */,
 				EEBAB8012483255D004E58DC /* Assets.xcassets */,
-				EEBAB8032483255D004E58DC /* LaunchScreen.storyboard */,
 				EEBAB8062483255D004E58DC /* Info.plist */,
-				EEBAB7FE24832552004E58DC /* coreDataDemoApp.xcdatamodeld */,
-				EEBAB80C24832BFD004E58DC /* GroceryItemCell.swift */,
-				EEBAB810248386E4004E58DC /* AddGroceryView.swift */,
 			);
 			path = coreDataDemoApp;
 			sourceTree = "<group>";
@@ -153,6 +180,7 @@
 				EEBAB80024832552004E58DC /* coreDataDemoApp.xcdatamodeld in Sources */,
 				EEBAB7F624832552004E58DC /* AppDelegate.swift in Sources */,
 				EEBAB7F824832552004E58DC /* SceneDelegate.swift in Sources */,
+				EE9A909524A5523500F0C2C8 /* GroceryManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
